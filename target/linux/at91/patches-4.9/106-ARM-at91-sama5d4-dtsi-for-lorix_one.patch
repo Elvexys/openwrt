@@ -1,0 +1,45 @@
+diff --git a/arch/arm/boot/dts/sama5d4.dtsi b/arch/arm/boot/dts/sama5d4.dtsi
+index 3559f1a..4852564 100644
+--- a/arch/arm/boot/dts/sama5d4.dtsi
++++ b/arch/arm/boot/dts/sama5d4.dtsi
+@@ -1256,6 +1247,25 @@
+ 				};
+ 			};
+ 
++			i2c3: i2c@fc038000 {
++				compatible = "atmel,sama5d4-i2c";
++				reg = <0xfc038000 0x4000>;
++				interrupts = <62 IRQ_TYPE_LEVEL_HIGH 6>;
++				dmas = <&dma0
++					(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1)
++					| AT91_XDMAC_DT_PERID(8))>,
++				       <&dma0
++					(AT91_XDMAC_DT_MEM_IF(0) | AT91_XDMAC_DT_PER_IF(1)
++					| AT91_XDMAC_DT_PERID(9))>;
++				dma-names = "tx", "rx";
++				pinctrl-names = "default";
++				pinctrl-0 = <&pinctrl_i2c3>;
++				#address-cells = <1>;
++				#size-cells = <0>;
++				clocks = <&twi3_clk>;
++				status = "disabled";
++			};
++
+ 			aes@fc044000 {
+ 				compatible = "atmel,at91sam9g46-aes";
+ 				reg = <0xfc044000 0x100>;
+@@ -1496,6 +1506,14 @@
+ 						atmel,pins =
+ 							<AT91_PIOB 29 AT91_PERIPH_A AT91_PINCTRL_NONE	/* TWD2, conflicts with RD0 and PWML1 */
+ 							 AT91_PIOB 30 AT91_PERIPH_A AT91_PINCTRL_NONE>; /* TWCK2, conflicts with RF0 */
++					};
++				};
++
++				i2c3 {
++					pinctrl_i2c3: i2c3-0 {
++						atmel,pins =
++							<AT91_PIOC 25 AT91_PERIPH_B AT91_PINCTRL_NONE	/* TWD3, conflicts with ISI_D6 and UART1 RX  */
++							 AT91_PIOC 26 AT91_PERIPH_B AT91_PINCTRL_NONE>; /* TWCK2, conflicts with ISI_D7 and UART1 TX */
+ 					};
+ 				};
+

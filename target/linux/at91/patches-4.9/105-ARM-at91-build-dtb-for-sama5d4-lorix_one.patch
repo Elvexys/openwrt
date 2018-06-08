@@ -1,0 +1,366 @@
+new file mode 100644
+--- /dev/null
++++ b/arch/arm/boot/dts/at91-sama5d4_lorix_one.dts
+@@ -0,0 +1,351 @@
++/*
++ * at91-sama5d4_lorix_one.dts - Device Tree file for SAMA5D4 LORIX One board
++ *
++ *  Copyright (C) 2016 Wifx,
++ *                2016 Yannick Lanz <yannick.lanz@gmail.com>
++ *
++ * This file is dual-licensed: you can use it either under the terms
++ * of the GPL or the X11 license, at your option. Note that this dual
++ * licensing only applies to this file, and not this project as a
++ * whole.
++ *
++ *  a) This file is free software; you can redistribute it and/or
++ *     modify it under the terms of the GNU General Public License as
++ *     published by the Free Software Foundation; either version 2 of the
++ *     License, or (at your option) any later version.
++ *
++ *     This file is distributed in the hope that it will be useful,
++ *     but WITHOUT ANY WARRANTY; without even the implied warranty of
++ *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ *     GNU General Public License for more details.
++ *
++ * Or, alternatively,
++ *
++ *  b) Permission is hereby granted, free of charge, to any person
++ *     obtaining a copy of this software and associated documentation
++ *     files (the "Software"), to deal in the Software without
++ *     restriction, including without limitation the rights to use,
++ *     copy, modify, merge, publish, distribute, sublicense, and/or
++ *     sell copies of the Software, and to permit persons to whom the
++ *     Software is furnished to do so, subject to the following
++ *     conditions:
++ *
++ *     The above copyright notice and this permission notice shall be
++ *     included in all copies or substantial portions of the Software.
++ *
++ *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
++ *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
++ *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
++ *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
++ *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
++ *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
++ *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
++ *     OTHER DEALINGS IN THE SOFTWARE.
++ */
++/dts-v1/;
++#include "sama5d4.dtsi"
++
++/ {
++	model = "Wifx LORIX One";
++	compatible = "atmel,sama5d4-lorix-one", "atmel,sama5d4", "atmel,sama5";
++
++	chosen {
++		bootargs = "ignore_loglevel earlyprintk";
++		stdout-path = "serial0:115200n8";
++	};
++
++	memory {
++		reg = <0x20000000 0x20000000>;
++	};
++
++	clocks {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges;
++
++		main_clock: clock@0 {
++			compatible = "atmel,osc", "fixed-clock";
++			clock-frequency = <12000000>;
++		};
++
++		slow_xtal {
++			clock-frequency = <32768>;
++		};
++
++		main_xtal {
++			clock-frequency = <12000000>;
++		};
++	};
++
++	ahb {
++		apb {
++			spi0: spi@f8010000 {
++				cs-gpios = <&pioD 31 0>;
++				status = "okay";
++				spidev@0 {
++					compatible = "spidev";
++					spi-max-frequency = <10000000>;
++					reg = <0>;
++				};
++			};
++
++			i2c0: i2c@f8014000 {
++				status = "okay";
++
++				lm75@4d {
++					compatible = "lm75";
++					reg = <0x4d>;
++					status = "okay";
++				};
++			};
++
++			i2c2: i2c@f8024000 {
++				status = "okay";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++			};
++
++			i2c3: i2c@fc038000 {
++				status = "okay";
++
++				#address-cells = <1>;
++				#size-cells = <0>;
++
++				/*
++				pmic: act8865@5b {
++					compatible = "active-semi,act8865";
++					reg = <0x5b>;
++					status = "okay";
++
++					regulators {
++						vcc_1v8_reg: DCDC_REG1 {
++							regulator-name = "VCC_1V8";
++							regulator-min-microvolt = <1800000>;
++							regulator-max-microvolt = <1800000>;
++							regulator-always-on;
++						};
++
++						vcc_3v3_reg: DCDC_REG3 {
++							regulator-name = "VCC_3V3";
++							regulator-min-microvolt = <3300000>;
++							regulator-max-microvolt = <3300000>;
++							regulator-always-on;
++						};
++
++						vddana_reg: LDO_REG1 {
++							regulator-name = "FUSE_2V5";
++							regulator-min-microvolt = <2500000>;
++							regulator-max-microvolt = <2500000>;
++							regulator-always-on;
++						};
++					};
++				};
++				*/
++			};
++
++			sfr: sfr@f8028000 {
++				compatible = "atmel,sama5d2-sfr", "atmel,sama5d4-sfr", "syscon";
++				reg = <0xf8028000 0x60>;
++			};
++
++			macb0: ethernet@f8020000 {
++				phy-mode = "rmii";
++				status = "okay";
++				pinctrl-names = "default";
++				pinctrl-0 = <&pinctrl_macb0_rmii &pinctrl_macb0_phy_irq>;
++
++				phy0: ethernet-phy@1 {
++					interrupt-parent = <&pioE>;
++					interrupts = <0 IRQ_TYPE_LEVEL_LOW>;
++					reg = <1>;
++				};
++			};
++
++			mmc1: mmc@fc000000 {
++				pinctrl-names = "default";
++				pinctrl-0 = <&pinctrl_mmc1_clk_cmd_dat0 &pinctrl_mmc1_dat1_3 &pinctrl_mmc1_cd>;
++				vmmc-supply = <&vcc_3v3_reg>;
++				vqmmc-supply = <&vcc_3v3_reg>;
++				status = "okay";
++				slot@0 {
++					reg = <0>;
++					bus-width = <4>;
++					cd-gpios = <&pioE 3 0>;
++				};
++			};
++
++			usart3: serial@fc00c000 {
++				status = "okay";
++			};
++
++			watchdog@fc068640 {
++				status = "okay";
++			};
++
++			pinctrl@fc06a000 {
++				board {
++					pinctrl_mmc1_cd: mmc1_cd {
++						atmel,pins =
++							<AT91_PIOE 3 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP_DEGLITCH>;
++					};
++					pinctrl_usba_vbus: usba_vbus {
++						atmel,pins =
++							<AT91_PIOE 31 AT91_PERIPH_GPIO AT91_PINCTRL_DEGLITCH>;
++					};
++					pinctrl_usb_id: usb_id {
++                        atmel,pins =
++                            <AT91_PIOD 11 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP_DEGLITCH>;
++                    };
++					pinctrl_macb0_phy_irq: macb0_phy_irq_0 {
++						atmel,pins =
++							<AT91_PIOE 0 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP_DEGLITCH>;
++					};
++					pinctrl_sx1301_rst: sx1301_rst {
++						atmel,pins =
++							<AT91_PIOA 1 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_UP_DEGLITCH>;
++					};
++					pinctrl_sx1301_scanmode: sx1301_scanmode {
++						atmel,pins =
++							<AT91_PIOA 2 AT91_PERIPH_GPIO AT91_PINCTRL_PULL_DOWN>;
++					};
++				};
++			};
++		};
++
++		usb0: gadget@00400000 {
++			atmel,vbus-gpio = <&pioE 31 GPIO_ACTIVE_HIGH>;
++			atmel,id-gpio = <&pioD 11 GPIO_ACTIVE_HIGH>;
++			pinctrl-names = "default";
++			pinctrl-0 = <&pinctrl_usba_vbus>;
++			status = "okay";
++		};
++
++		usb1: ohci@00500000 {
++            num-ports = <3>;
++            atmel,vbus-gpio = <&pioD 12 GPIO_ACTIVE_HIGH
++                       0
++                       0
++                      >;
++            atmel,id-gpio = <&pioD 11 GPIO_ACTIVE_HIGH
++                       0
++                       0
++                      >;
++            pinctrl-names = "default";
++            pinctrl-0 = <&pinctrl_usb_id>;
++            status = "okay";
++        };
++
++		usb2: ehci@00600000 {
++			status = "okay";
++		};
++
++		nand0: nand@80000000 {
++			nand-bus-width = <8>;
++			nand-ecc-mode = "hw";
++			nand-on-flash-bbt;
++			atmel,has-pmecc;
++			atmel,pmecc-cap = <4>;
++			atmel,pmecc-sector-size = <512>;
++			status = "okay";
++
++			at91bootstrap@0 {
++				label = "at91bootstrap";
++				reg = <0x0 0x40000>;
++			};
++
++			bootloader@40000 {
++				label = "bootloader";
++				reg = <0x40000 0x80000>;
++			};
++
++			bootloaderenv@c0000 {
++				label = "bootloader env";
++				reg = <0xc0000 0xc0000>;
++			};
++
++			dtb@180000 {
++				label = "device tree";
++				reg = <0x180000 0x80000>;
++			};
++
++			kernel@200000 {
++				label = "kernel";
++				reg = <0x200000 0x600000>;
++			};
++
++			rootfs@800000 {
++				label = "rootfs";
++				reg = <0x800000 0x0f800000>;
++			};
++		};
++	};
++
++	leds {
++		compatible = "gpio-leds";
++		status = "okay";
++
++		led_power {
++			label = "power";
++			gpios = <&pioD 30 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++		};
++
++		led_sys {
++			label = "sys";
++			gpios = <&pioE 15 GPIO_ACTIVE_HIGH>;
++			default-state = "off";
++			linux,default-trigger = "heartbeat";
++		};
++	};
++
++	i2cmux {
++		compatible = "i2c-mux-gpio";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		mux-gpios = <&pioB 31 GPIO_ACTIVE_HIGH>;
++		i2c-parent = <&i2c2>;
++		idle-state = <0>;
++
++		i2c@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			pmic-lorix@60 {
++				compatible = "wifx,pmic-lorix";
++				reg = <0x60>;
++
++				leds {
++					compatible = "wifx,pmic-lorix-led";
++					#address-cells = <1>;
++					#size-cells = <0>;
++					led-control = <0x000 0x000 0x0e0 0x000>;
++
++					sysled {
++						reg = <0>;
++						label = "status:blue:live";
++						linux,default-trigger = "heartbeat";
++					};
++				};
++			};
++		};
++	};
++
++	vddbu_2v_reg: fixedregulator@0 {
++		compatible = "regulator-fixed";
++		regulator-name = "VDDBU 2V";
++		regulator-min-microvolt = <2000000>;
++		regulator-max-microvolt = <2000000>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++
++	vcc_3v3_reg: fixedregulator@1 {
++		regulator-name = "VCC_3V3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-boot-on;
++		regulator-always-on;
++	};
++};
+
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -59,6 +59,7 @@
+ 	sama5d36ek.dtb \
+ 	at91-sama5d4_ma5d4evk.dtb \
+ 	at91-sama5d4_xplained.dtb \
++	at91-sama5d4_lorix_one.dtb \
+ 	at91-sama5d4ek.dtb \
+ 	at91-vinco.dtb \
+ 	wb50n.dtb

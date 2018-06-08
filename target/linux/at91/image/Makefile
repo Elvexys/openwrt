@@ -25,6 +25,10 @@ endif
 ifeq ($(SUBTARGET),sama5d4)
 include ./sama5d4.mk
 endif
+ifeq ($(SUBTARGET),lorix_one)
+include ./lorix_one.mk
+endif
+
 
 AT91_SD_BOOT_PARTSIZE:=64
 FAT32_BLOCK_SIZE:=1024
@@ -119,6 +123,13 @@ define Device/production-dtb
   $(Device/dtb)
   IMAGE/factory.bin := append-dtb | pad-to $$$$(DTB_SIZE) \
 	  | append-kernel | pad-to $$$$(KERNEL_SIZE) | append-ubi
+endef
+
+define Device/sysupgrade-dtb
+  $(Device/dtb)
+  DEVICE_DTS_DIR := $(DTS_DIR)
+  IMAGES += sysupgrade.bin
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-kernel | append-rootfs | pad-rootfs | append-metadata
 endef
 
 $(eval $(call BuildImage))

@@ -55,6 +55,9 @@ at91_board_detect() {
 	*"SAMA5D4 Xplained")
 		name="sama5d4_xplained"
 		;;
+   *"Wifx LORIX One")
+       name="at91-sama5d4_lorix_one"
+       ;;
 	*"CalAmp LMU5000")
 		name="lmu5000"
 		;;
