@@ -129,7 +129,7 @@ define Device/sysupgrade-dtb
   $(Device/dtb)
   DEVICE_DTS_DIR := $(DTS_DIR)
   IMAGES += sysupgrade.bin
-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-kernel | append-rootfs | pad-rootfs | append-metadata
+  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
 endef
 
 $(eval $(call BuildImage))
