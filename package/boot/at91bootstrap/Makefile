@@ -9,12 +9,12 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=at91bootstrap
-PKG_VERSION:=v3.8.10
+PKG_VERSION:=v3.8.9
 PKG_RELEASE:=
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/linux4sam/at91bootstrap.git
-PKG_SOURCE_VERSION:=04efa5500d60a0211d14b6ee60df7ce0a828704d
+PKG_SOURCE_URL:=https://github.com/Wifx/at91bootstrap.git
+PKG_SOURCE_VERSION:=41ed993db802a7b15684e7b6bc869c1dddd5b89d
 
 PKG_BUILD_DIR = \
     $(BUILD_DIR)/$(PKG_NAME)-$(BUILD_VARIANT)/$(PKG_NAME)-$(PKG_VERSION)
@@ -76,6 +76,12 @@ define AT91Bootstrap/sama5d4_xplainedsd_uboot_secure
   BUILD_DEVICES:=at91-sama5d4_xplained
 endef
 
+define AT91Bootstrap/sama5d4_lorix_onenf_uboot_secure
+  TITLE:=AT91Bootstrap for SAMA5D4 LORIX One (Nand Flash)
+  BUILD_SUBTARGET:=lorix_one
+  BUILD_DEVICES:=at91-sama5d4_lorix_one
+endef
+
 define AT91Bootstrap/sama5d27_som1_eksd_uboot
   TITLE:=AT91Bootstrap for SAMA5D27 SOM1 Ek (SDcard0)
   BUILD_SUBTARGET:=sama5d2
@@ -115,6 +121,7 @@ AT91BOOTSTRAP_TARGETS := \
     sama5d4_xplainednf_uboot_secure \
     sama5d4_xplaineddf_uboot_secure \
     sama5d4_xplainedsd_uboot_secure \
+    sama5d4_lorix_onenf_uboot_secure \
 	sama5d27_som1_eksd_uboot \
 	sama5d27_som1_ekqspi_uboot \
 	sama5d2_ptc_eknf_uboot \
