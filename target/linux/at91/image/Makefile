@@ -13,6 +13,14 @@ define Build/at91-install-zImage
     $(CP) $(KDIR)/zImage $@
 endef
 
+define Build/sysupgrade-zImage-tar
+	sh $(TOPDIR)/scripts/sysupgrade-tar.sh \
+	--board $(if $(BOARD_NAME),$(BOARD_NAME),$(DEVICE_NAME)) \
+	--kernel $(KDIR)/zImage \
+	--rootfs $(KDIR)/root.ubifs+fs=-m_2048_-e_0x1f000_-c_2048 \
+	$@
+endef
+
 ifeq ($(SUBTARGET),legacy)
 include ./legacy.mk
 endif
@@ -128,8 +136,8 @@ endef
 define Device/sysupgrade-dtb
   $(Device/dtb)
   DEVICE_DTS_DIR := $(DTS_DIR)
-  IMAGES += sysupgrade.bin
-  IMAGE/sysupgrade.bin := sysupgrade-tar | append-metadata
+  IMAGES += sysupgrade.tar
+  IMAGE/sysupgrade.tar := sysupgrade-zImage-tar
 endef
 
 $(eval $(call BuildImage))
