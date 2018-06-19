@@ -1,4 +1,4 @@
 ::sysinit:/etc/init.d/rcS S boot
 ::shutdown:/etc/init.d/rcS K shutdown
 ::askconsole:/usr/libexec/login.sh
-::respawn:/bin/busybox getty 115200 ttyGS0
+::respawn:/usr/sbin/agetty 115200 ttyGS0
