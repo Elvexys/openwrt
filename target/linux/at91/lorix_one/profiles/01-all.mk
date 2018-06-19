@@ -7,9 +7,9 @@
 
 define Profile/All
 	NAME:=Ultimate Profile
-	PACKAGES := luci luci-ssl-openssl packet-forwarder lorawan-server lora-interface \
+	PACKAGES := luci luci-ssl packet-forwarder lorawan-server lora-interface \
 		luci-app-lorawan-server luci-app-pkt-fwd luci-app-openvpn mosquitto-ssl \
-		openvpn-openssl kmod-wireguard python3-six
+		openvpn-openssl kmod-wireguard python3-six python3-pyserial
 endef
 
 define Profile/All/Description
