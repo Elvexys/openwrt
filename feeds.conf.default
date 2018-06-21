@@ -3,4 +3,5 @@ src-git luci https://git.openwrt.org/project/luci.git;openwrt-18.06
 src-git routing https://git.openwrt.org/feed/routing.git;openwrt-18.06
 src-git telephony https://git.openwrt.org/feed/telephony.git;openwrt-18.06
 src-git lora http://192.168.159.37/lorix/lora-feed.git;dev
-src-git infoteam http://192.168.159.37/lorix/infoteam-feed.git
+#src-git infoteam http://192.168.159.37/lorix/infoteam-feed.git
+src-link infoteam /home/arnaud/Projects/infoteam-feed/
