@@ -74,14 +74,17 @@ ar71xx_setup_interfaces()
 	cap4200ag|\
 	cf-e380ac-v1|\
 	cf-e380ac-v2|\
+	cpe210-v2|\
 	dr342|\
 	eap120|\
 	eap300v2|\
 	eap7660d|\
 	el-mini|\
 	fritz300e|\
+	fritz450e|\
 	gl-usb150|\
 	hiveap-121|\
+	koala|\
 	lbe-m5|\
 	loco-m-xw|\
 	mr12|\
@@ -481,6 +484,7 @@ ar71xx_setup_interfaces()
 			"0@eth1" "1:lan:4" "2:lan:1" "3:lan:2" "4:lan:3"
 		;;
 	archer-c7-v4|\
+	archer-c7-v5|\
 	tl-wdr4300|\
 	tl-wr1041n-v2)
 		ucidef_add_switch "switch0" \
