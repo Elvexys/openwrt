@@ -1,6 +1,6 @@
-src-git packages http://192.168.159.37/lorix/packages.git;dev
+src-git packages git@stx-firmware:lorix/packages.git;dev
 src-git luci https://git.openwrt.org/project/luci.git;openwrt-18.06
 src-git routing https://git.openwrt.org/feed/routing.git;openwrt-18.06
 src-git telephony https://git.openwrt.org/feed/telephony.git;openwrt-18.06
-src-git lora http://192.168.159.37/lorix/lora-feed.git;dev
-src-git infoteam http://192.168.159.37/lorix/infoteam-feed.git;PoC/Modbus-do-not-use-main
+src-git lora git@stx-firmware:lorix/lora-feed.git;dev
+src-git infoteam git@stx-firmware:lorix/infoteam-feed.git;master
