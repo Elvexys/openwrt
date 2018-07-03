@@ -7,12 +7,12 @@
 
 include $(TOPDIR)/rules.mk
 
-PKG_VERSION:=wifx_2017.03
+PKG_VERSION:=linux4sam_5.8
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/Wifx/u-boot-at91.git
-PKG_SOURCE_VERSION:=65c803425bd2a0429d54111d36dace7db33386f1
+PKG_SOURCE_URL:=https://github.com/linux4sam/u-boot-at91.git
+PKG_SOURCE_VERSION:=59f202622154f82e708a6ca2bf86350a5c1b2d33
 
 include $(INCLUDE_DIR)/u-boot.mk
 include $(INCLUDE_DIR)/package.mk
