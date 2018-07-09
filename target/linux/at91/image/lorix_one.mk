@@ -14,7 +14,7 @@ define Device/at91-sama5d4_lorix_one
   BLOCKSIZE := 256k
   PAGESIZE := 2048
   SUBPAGESIZE := 2048
-  MKUBIFS_OPTS := -m $$(PAGESIZE) -e 0x1f000 -c 2048
-  UBINIZE_OPTS := -m $$(PAGESIZE) -p 0x20000 -s 2048
+  MKUBIFS_OPTS := -m $$(PAGESIZE) -e 0x1f000 -c 2082
+  UBINIZE_OPTS := -m 2048 -p 0x20000 -s 2048
 endef
 TARGET_DEVICES += at91-sama5d4_lorix_one
