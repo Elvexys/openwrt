@@ -76,6 +76,12 @@ define AT91Bootstrap/sama5d4_xplainedsd_uboot_secure
   BUILD_DEVICES:=at91-sama5d4_xplained
 endef
 
+define AT91Bootstrap/sama5d4_lorix_onenf_uboot_secure
+  TITLE:=AT91Bootstrap for SAMA5D4 LORIX One (Nand Flash)
+  BUILD_SUBTARGET:=lorix_one
+  BUILD_DEVICES:=at91-sama5d4_lorix_one
+endef
+
 define AT91Bootstrap/sama5d27_som1_eksd_uboot
   TITLE:=AT91Bootstrap for SAMA5D27 SOM1 Ek (SDcard0)
   BUILD_SUBTARGET:=sama5d2
@@ -115,6 +121,7 @@ AT91BOOTSTRAP_TARGETS := \
     sama5d4_xplainednf_uboot_secure \
     sama5d4_xplaineddf_uboot_secure \
     sama5d4_xplainedsd_uboot_secure \
+    sama5d4_lorix_onenf_uboot_secure \
 	sama5d27_som1_eksd_uboot \
 	sama5d27_som1_ekqspi_uboot \
 	sama5d2_ptc_eknf_uboot \
