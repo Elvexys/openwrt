@@ -17,7 +17,7 @@ define Build/sysupgrade-zImage-tar
 	sh $(TOPDIR)/scripts/sysupgrade-tar.sh \
 	--board $(if $(BOARD_NAME),$(BOARD_NAME),$(DEVICE_NAME)) \
 	--kernel $(KDIR)/zImage \
-	--rootfs $(KDIR)/root.ubifs+fs=-m_2048_-e_0x1f000_-c_2082 \
+	--rootfs $(KDIR)/root.ubifs+fs=-m_2048_-e_0x1f000_-c_2048 \
 	$@
 endef
 
