@@ -1,6 +1,6 @@
-src-git packages git@stx-firmware:lorix/packages.git^530eb90ec8695aed1c263826df4be95d479401b7
+src-git packages git@stx-firmware:lorix/packages.git;infoteam-18.06
 src-git luci https://git.openwrt.org/project/luci.git^f64b1523447547032d5280fb0bcdde570f2ca913
 src-git routing https://git.openwrt.org/feed/routing.git^1b9d1c419f0ecefda51922a7845ab2183d6acd76
 src-git telephony https://git.openwrt.org/feed/telephony.git^b9d7b321d15a44c5abb9e5d43a4ec78abfd9031b
-src-git lora git@stx-firmware:lorix/lora-feed.git^dcb4f46ab46f57d5f5dcc4cf42aabf893fbeb7be
-src-git infoteam git@stx-firmware:lorix/infoteam-feed.git^f69af9ca6444339f12a8ea9bccedf3a6a86d1f5f
+src-git lora git@stx-firmware:lorix/lora-feed.git;infoteam-18.06
+src-git infoteam git@stx-firmware:lorix/infoteam-feed.git;master
