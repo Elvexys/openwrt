@@ -1,0 +1,3 @@
+
+config dnsmasq
+	option port '0'

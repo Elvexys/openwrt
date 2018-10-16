@@ -1,0 +1,10 @@
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -61,6 +61,7 @@
+ 	at91-sama5d4_ma5d4evk.dtb \
+ 	at91-sama5d4_xplained.dtb \
+ 	at91-sama5d4_lorix_one.dtb \
++	at91-sama5d4_lorix_one_512.dtb \
+ 	at91-sama5d4ek.dtb \
+ 	at91-vinco.dtb \
+ 	wb50n.dtb
