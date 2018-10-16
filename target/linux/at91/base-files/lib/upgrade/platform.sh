@@ -10,6 +10,9 @@ platform_do_upgrade() {
 	at91-sama5d4_lorix_one)
 		nand_do_upgrade $1
 		;;
+	at91-sama5d4_lorix_one512)
+		nand_do_upgrade $1
+		;;
 	*)
 		echo "flashing kernel"
 		tar xf $tar_file sysupgrade-$board/kernel -O | mtd write - kernel
@@ -28,6 +31,10 @@ platform_check_image() {
 
 	case "$board" in
 	at91-sama5d4_lorix_one)
+		local kernel_length=`(tar xf $tar_file sysupgrade-$board/kernel -O | wc -c) 2> /dev/null`
+		local rootfs_length=`(tar xf $tar_file sysupgrade-$board/root -O | wc -c) 2> /dev/null`
+		;;
+	at91-sama5d4_lorix_one512)
 		local kernel_length=`(tar xf $tar_file sysupgrade-$board/kernel -O | wc -c) 2> /dev/null`
 		local rootfs_length=`(tar xf $tar_file sysupgrade-$board/root -O | wc -c) 2> /dev/null`
 		;;

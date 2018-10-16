@@ -36,7 +36,9 @@ endif
 ifeq ($(SUBTARGET),lorix_one)
 include ./lorix_one.mk
 endif
-
+ifeq ($(SUBTARGET),lorix_one512)
+include ./lorix_one512.mk
+endif
 
 AT91_SD_BOOT_PARTSIZE:=64
 FAT32_BLOCK_SIZE:=1024
