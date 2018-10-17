@@ -21,6 +21,14 @@ define Build/sysupgrade-zImage-tar
 	$@
 endef
 
+define Build/sysupgrade-zImage-tar-512
+	sh $(TOPDIR)/scripts/sysupgrade-tar.sh \
+	--board $(if $(BOARD_NAME),$(BOARD_NAME),$(DEVICE_NAME)) \
+	--kernel $(KDIR)/zImage \
+	--rootfs $(KDIR)/root.ubifs+fs=-m_4096_-e_0x3e000_-c_4096 \
+	$@
+endef
+
 ifeq ($(SUBTARGET),legacy)
 include ./legacy.mk
 endif
@@ -142,4 +150,10 @@ define Device/sysupgrade-dtb
   IMAGE/sysupgrade.tar := sysupgrade-zImage-tar
 endef
 
+define Device/sysupgrade-dtb-512
+  $(Device/dtb)
+  DEVICE_DTS_DIR := $(DTS_DIR)
+  IMAGES += sysupgrade.tar
+  IMAGE/sysupgrade.tar := sysupgrade-zImage-tar-512
+endef
 $(eval $(call BuildImage))
