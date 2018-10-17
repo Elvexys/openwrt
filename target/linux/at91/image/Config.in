@@ -9,9 +9,8 @@ config FLEXIBITY_ROOT
 	default n
 
 config LORIX_ONE_SERIAL
+    depends on (TARGET_at91_lorix_one || TARGET_at91_lorix_one512)
     bool "Getty for serial port"
-    depends on TARGET_at91_lorix_one
-    depends on TARGET_at91_lorix_one512
     default y
     select PACKAGE_busybox
     select BUSYBOX_CUSTOM
