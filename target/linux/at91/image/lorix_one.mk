@@ -7,9 +7,10 @@ define Device/default-nand
 endef
 
 define Device/at91-sama5d4_lorix_one
+  DEVICE_DTS := at91-sama5d4_lorix_one
   $(Device/evaluation-dtb)
   $(Device/sysupgrade-dtb)
-  DEVICE_TITLE := Microchip(Atmel AT91) LORIX One
+  DEVICE_TITLE := Microchip(Atmel AT91) LORIX One 256MB
   KERNEL_SIZE := 6144k
   BLOCKSIZE := 256k
   PAGESIZE := 2048
