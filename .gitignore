@@ -11,12 +11,10 @@
 /tmp
 /logs
 /feeds
-/feeds.conf
 /files
 /overlay
 /package/feeds
 /package/openwrt-packages
-/defconfig/*.private.conf
 key-build*
 *.orig
 *.rej
