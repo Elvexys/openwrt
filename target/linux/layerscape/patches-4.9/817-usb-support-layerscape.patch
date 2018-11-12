@@ -1494,7 +1494,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  		while (ep_ring->dequeue != td->last_trb)
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
-@@ -1604,14 +1604,38 @@ int xhci_urb_dequeue(struct usb_hcd *hcd
+@@ -1609,14 +1609,38 @@ int xhci_urb_dequeue(struct usb_hcd *hcd
  			ret = -ENOMEM;
  			goto done;
  		}
@@ -1658,7 +1658,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  			return IRQ_HANDLED;
  		}
  	}
-@@ -923,12 +932,32 @@ int usb_otg_start(struct platform_device
+@@ -925,12 +934,32 @@ int usb_otg_start(struct platform_device
  	temp &= ~(PORTSC_PHY_TYPE_SEL | PORTSC_PTW);
  	switch (pdata->phy_mode) {
  	case FSL_USB2_PHY_ULPI:
