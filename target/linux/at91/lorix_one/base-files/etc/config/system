@@ -1,0 +1,21 @@
+
+config system
+	option hostname 'OpenLORIX'
+	option timezone 'UTC'
+	option ttylogin '0'
+	option log_size '64'
+	option urandom_seed '0'
+
+config timeserver 'ntp'
+	option enabled '1'
+	option enable_server '0'
+	list server '0.pool.ntp.org'
+	list server '1.pool.ntp.org'
+	list server '2.pool.ntp.org'
+	list server '3.pool.ntp.org'
+
+config led
+	option sysfs 'status:blue:live'
+	option default '1'
+	option name 'Status'
+	option trigger 'heartbeat'

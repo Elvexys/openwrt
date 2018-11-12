@@ -13,6 +13,22 @@ define Build/at91-install-zImage
     $(CP) $(KDIR)/zImage $@
 endef
 
+define Build/sysupgrade-zImage-tar
+	sh $(TOPDIR)/scripts/sysupgrade-tar.sh \
+	--board $(if $(BOARD_NAME),$(BOARD_NAME),$(DEVICE_NAME)) \
+	--kernel $(KDIR)/zImage \
+	--rootfs $(KDIR)/root.ubifs+fs=-m_2048_-e_0x1f000_-c_2048 \
+	$@
+endef
+
+define Build/sysupgrade-zImage-tar-512
+	sh $(TOPDIR)/scripts/sysupgrade-tar.sh \
+	--board $(if $(BOARD_NAME),$(BOARD_NAME),$(DEVICE_NAME)) \
+	--kernel $(KDIR)/zImage \
+	--rootfs $(KDIR)/root.ubifs+fs=-m_4096_-e_0x3e000_-c_4096 \
+	$@
+endef
+
 ifeq ($(SUBTARGET),legacy)
 include ./legacy.mk
 endif
@@ -24,6 +40,12 @@ include ./sama5d3.mk
 endif
 ifeq ($(SUBTARGET),sama5d4)
 include ./sama5d4.mk
+endif
+ifeq ($(SUBTARGET),lorix_one)
+include ./lorix_one.mk
+endif
+ifeq ($(SUBTARGET),lorix_one512)
+include ./lorix_one512.mk
 endif
 
 AT91_SD_BOOT_PARTSIZE:=64
@@ -121,4 +143,17 @@ define Device/production-dtb
 	  | append-kernel | pad-to $$$$(KERNEL_SIZE) | append-ubi
 endef
 
+define Device/sysupgrade-dtb
+  $(Device/dtb)
+  DEVICE_DTS_DIR := $(DTS_DIR)
+  IMAGES += sysupgrade.tar
+  IMAGE/sysupgrade.tar := sysupgrade-zImage-tar
+endef
+
+define Device/sysupgrade-dtb-512
+  $(Device/dtb)
+  DEVICE_DTS_DIR := $(DTS_DIR)
+  IMAGES += sysupgrade.tar
+  IMAGE/sysupgrade.tar := sysupgrade-zImage-tar-512
+endef
 $(eval $(call BuildImage))
