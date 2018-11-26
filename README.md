@@ -17,11 +17,12 @@ All custom package are available on our dedicated feed : https://github.com/Info
 ... and more ...
 
 # Default configuration
-
+```
 IP adress     : 192.168.1.1
 Username      : root
 Pass          : no password
 Management UI : https://192.168.1.1
+```
 
 # Install OpenLORIX
 Binary release are available under the release section.
