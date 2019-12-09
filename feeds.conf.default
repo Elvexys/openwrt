@@ -1,5 +1,5 @@
-src-git packages https://github.com/InfoteamEnergySolutions/packages.git;infoteam-18.06
+src-git packages https://git.openwrt.org/feed/packages.git^f0eb182472dcbf18df511828b0287f1353684525
 src-git luci https://git.openwrt.org/project/luci.git^bc17ef673f734ea8e7e696ba5735588da9111dcd
 src-git routing https://git.openwrt.org/feed/routing.git^c52779c05a4cf838c736327d8b042ee59f782331
-src-git telephony https://git.openwrt.org/feed/telephony.git^06a5323734038c3866f507787256581dba3d8522
+src-git telephony https://git.openwrt.org/feed/telephony.git^06a5323734038c3866f507787256581dba3d8522522
 src-git infoteam_oss https://github.com/InfoteamEnergySolutions/infoteam-oss-feed.git^eb019a097a54e946c8467393db5a47c9ae708880
