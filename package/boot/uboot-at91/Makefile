@@ -80,6 +80,18 @@ define U-Boot/sama5d4_xplained_nandflash
   BUILD_DEVICES:=at91-sama5d4_xplained
 endef
 
+define U-Boot/sama5d4_lorix_one_nandflash
+  NAME:=SAMA5D4 LORIX One (NandFlash)
+  BUILD_SUBTARGET:=lorix_one
+  BUILD_DEVICES:=at91-sama5d4_lorix_one
+endef
+
+define U-Boot/sama5d4_lorix_one_512_nandflash
+  NAME:=SAMA5D4 LORIX One (NandFlash)
+  BUILD_SUBTARGET:=lorix_one512
+  BUILD_DEVICES:=at91-sama5d4_lorix_one512
+endef
+
 define U-Boot/sama5d27_som1_ek_mmc
   NAME:=SAMA5D27 SOM1 Ek (SDCard)
   BUILD_SUBTARGET:=sama5d2
@@ -114,6 +126,8 @@ UBOOT_TARGETS := \
 	sama5d4_xplained_mmc \
 	sama5d4_xplained_spiflash \
 	sama5d4_xplained_nandflash\
+	sama5d4_lorix_one_nandflash \
+	sama5d4_lorix_one_512_nandflash \
     sama5d27_som1_ek_mmc \
     sama5d27_som1_ek_spiflash \
 	sama5d2_ptc_ek_nandflash \

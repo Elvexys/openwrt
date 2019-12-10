@@ -193,7 +193,7 @@ define KernelPackage/usb-gadget-serial
 	$(LINUX_DIR)/drivers/usb/gadget/function/usb_f_obex.ko \
 	$(LINUX_DIR)/drivers/usb/gadget/function/usb_f_serial.ko \
 	$(LINUX_DIR)/drivers/usb/gadget/legacy/g_serial.ko
-  AUTOLOAD:=$(call AutoLoad,52,usb_f_acm)
+  AUTOLOAD:=$(call AutoLoad,52,usb_f_acm g_serial)
   $(call AddDepends/usb)
 endef
 

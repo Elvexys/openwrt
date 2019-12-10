@@ -55,6 +55,12 @@ at91_board_detect() {
 	*"SAMA5D4 Xplained")
 		name="sama5d4_xplained"
 		;;
+   *"Wifx LORIX One")
+       name="at91-sama5d4_lorix_one"
+       ;;
+   *"Wifx LORIX One (512MB NAND version)")
+       name="at91-sama5d4_lorix_one512"
+       ;;
 	*"CalAmp LMU5000")
 		name="lmu5000"
 		;;
