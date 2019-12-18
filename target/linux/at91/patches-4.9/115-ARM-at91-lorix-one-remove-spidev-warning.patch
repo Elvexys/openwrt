@@ -1,0 +1,21 @@
+diff -ru linux-4.9.205/drivers/spi/spidev.c "linux-4.9 (copy).205/drivers/spi/spidev.c"
+--- a/drivers/spi/spidev.c	2019-12-18 15:42:18.411908306 +0100
++++ b/drivers/spi/spidev.c"	2019-12-18 15:59:36.994918398 +0100
+@@ -753,9 +753,15 @@
+ 	 * compatible string, it is a Linux implementation thing
+ 	 * rather than a description of the hardware.
+ 	 */
+-	WARN(spi->dev.of_node &&
+-	     of_device_is_compatible(spi->dev.of_node, "spidev"),
+-	     "%pOF: buggy DT: spidev listed directly in DT\n", spi->dev.of_node);
++	 
++	/*
++	 * (Elvexys) This test change multiple time to avoid using spidev as driver,
++	 * but there is no other solution before semtech fix its driver
++	 * 
++	 * WARN(spi->dev.of_node &&
++	 *    of_device_is_compatible(spi->dev.of_node, "spidev"),
++	 *    "%pOF: buggy DT: spidev listed directly in DT\n", spi->dev.of_node);
++	*/
+ 
+ 	spidev_probe_acpi(spi);
