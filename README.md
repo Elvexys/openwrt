@@ -55,4 +55,4 @@ Build result is available in `bin/targets/at91/lorix_one/`
 # Warranty
 This product is offered as it is, without any support.
 
-If you need commercial support, customization etc. You will find more information on our website : https://energy.infoteam.ch/en/iot-internet-of-things/lorawan.html
+If you need commercial support, customization etc. You will find more information on our website : https://elvexys.com/
