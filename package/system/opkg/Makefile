@@ -14,9 +14,9 @@ PKG_FLAGS:=essential
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://git.openwrt.org/project/opkg-lede.git
-PKG_SOURCE_DATE:=2019-01-18
-PKG_SOURCE_VERSION:=7708a01a084872bbe4c46f36d2da021fdeb10862
-PKG_MIRROR_HASH:=117148ece22e64654264afd869606ef5507edd3dc965ffe000c6b1b1074b3f4a
+PKG_SOURCE_DATE:=2019-06-14
+PKG_SOURCE_VERSION:=dcbc142e51f5f5f2fb9e4e44657e013d3c36a52b
+PKG_MIRROR_HASH:=fca7e71dd06f0d5ee0af0d0a493d641d4d5d7e403d64c67879a462a020aa2299
 
 PKG_LICENSE:=GPL-2.0
 PKG_LICENSE_FILES:=COPYING
@@ -25,7 +25,7 @@ PKG_MAINTAINER:=Jo-Philipp Wich <jo@mein.io>
 
 # Extend depends from version.mk
 PKG_CONFIG_DEPENDS += \
-	CONFIG_SIGNED_PACKAGES \
+	CONFIG_SIGNATURE_CHECK \
 	CONFIG_TARGET_INIT_PATH
 
 PKG_BUILD_PARALLEL:=1
@@ -88,7 +88,7 @@ define Package/opkg/install
 	$(INSTALL_DATA) ./files/opkg$(2).conf $(1)/etc/opkg.conf
 	$(INSTALL_BIN) ./files/20_migrate-feeds $(1)/etc/uci-defaults/
 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/opkg-cl $(1)/bin/opkg
-  ifneq ($(CONFIG_SIGNED_PACKAGES),)
+  ifneq ($(CONFIG_SIGNATURE_CHECK),)
 	echo "option check_signature" >> $(1)/etc/opkg.conf
   endif
 	$(INSTALL_DIR) $(1)/usr/sbin

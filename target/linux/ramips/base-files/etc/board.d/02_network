@@ -32,6 +32,7 @@ ramips_setup_interfaces()
 
 	case $board in
 	11acnas|\
+	dir-615-h1|\
 	w2914nsv2|\
 	zbt-we2026)
 		ucidef_add_switch "switch0" \
@@ -81,7 +82,6 @@ ramips_setup_interfaces()
 	dir-300-b7|\
 	dir-320-b1|\
 	dir-610-a1|\
-	dir-615-h1|\
 	dir-810l|\
 	dlink,dwr-116-a1|\
 	dlink,dwr-921-c1|\
@@ -422,7 +422,6 @@ ramips_setup_macs()
 	dir-320-b1|\
 	dir-620-a1|\
 	esr-9753|\
-	freestation5|\
 	hlk-rm04|\
 	mpr-a1|\
 	psr-680w|\
@@ -438,12 +437,12 @@ ramips_setup_macs()
 		wan_mac=$(mtd_get_mac_binary devdata 7)
 		;;
 	cy-swr1100|\
-	dch-m225)
-		lan_mac=$(mtd_get_mac_ascii factory lanmac)
-		;;
 	dir-645)
 		lan_mac=$(mtd_get_mac_ascii nvram lanmac)
 		wan_mac=$(mtd_get_mac_ascii nvram wanmac)
+		;;
+	dch-m225)
+		lan_mac=$(mtd_get_mac_ascii factory lanmac)
 		;;
 	dir-860l-b1)
 		lan_mac=$(mtd_get_mac_ascii factory lanmac)

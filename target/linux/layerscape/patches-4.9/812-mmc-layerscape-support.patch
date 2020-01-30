@@ -564,7 +564,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  
  static int sdhci_select_drive_strength(struct mmc_card *card,
  				       unsigned int max_dtr, int host_drv,
-@@ -3004,6 +3007,8 @@ struct sdhci_host *sdhci_alloc_host(stru
+@@ -2996,6 +2999,8 @@ struct sdhci_host *sdhci_alloc_host(stru
  
  	host->flags = SDHCI_SIGNALING_330;
  
