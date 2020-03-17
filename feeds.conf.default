@@ -2,4 +2,4 @@ src-git packages https://github.com/InfoteamEnergySolutions/packages.git;infotea
 src-git luci https://git.openwrt.org/project/luci.git^91a73bebfbe387324a2bb27c034a435b113c1c74
 src-git routing https://git.openwrt.org/feed/routing.git^1b9d1c419f0ecefda51922a7845ab2183d6acd76
 src-git telephony https://git.openwrt.org/feed/telephony.git^b9d7b321d15a44c5abb9e5d43a4ec78abfd9031b
-src-git infoteam_oss https://github.com/InfoteamEnergySolutions/infoteam-oss-feed.git^8b338dd2b597f739a9fd928490e693edf50a9ccb
+src-git infoteam_oss https://github.com/InfoteamEnergySolutions/infoteam-oss-feed.git^361f1de4be6e2035c79982e84e26c79b419cf9c0
