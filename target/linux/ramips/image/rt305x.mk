@@ -335,7 +335,6 @@ define Device/f7c027
   DTS := F7C027
   IMAGE_SIZE := 7616k
   DEVICE_TITLE := Belkin F7C027
-  DEVICE_PACKAGES := -kmod-usb-core -kmod-usb-dwc2 -kmod-usb-ledtrig-usbport
 endef
 TARGET_DEVICES += f7c027
 
@@ -895,9 +894,10 @@ TARGET_DEVICES += xdxrn502j
 define Device/kn
   DTS := kn
   BLOCKSIZE := 64k
-  IMAGE_SIZE := $(ralink_default_fw_size_4M)
+  IMAGE_SIZE := 7872k
   DEVICE_TITLE := ZyXEL Keenetic
-  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-ehci kmod-usb-ledtrig-usbport
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-ehci \
+	kmod-usb-ledtrig-usbport kmod-usb-dwc2
 endef
 TARGET_DEVICES += kn
 

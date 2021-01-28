@@ -87,7 +87,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  			pkt_len = le32_to_cpu(rx_desc->opts1) & RX_LEN_MASK;
  			if (pkt_len < ETH_ZLEN)
  				break;
-@@ -4516,6 +4521,7 @@ static struct usb_device_id rtl8152_tabl
+@@ -4526,6 +4531,7 @@ static struct usb_device_id rtl8152_tabl
  	{REALTEK_USB_DEVICE(VENDOR_ID_LENOVO,  0x304f)},
  	{REALTEK_USB_DEVICE(VENDOR_ID_LINKSYS, 0x0041)},
  	{REALTEK_USB_DEVICE(VENDOR_ID_NVIDIA,  0x09ff)},
@@ -156,7 +156,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  	int ret;
 --- a/drivers/usb/core/hub.c
 +++ b/drivers/usb/core/hub.c
-@@ -4454,6 +4454,14 @@ hub_port_init(struct usb_hub *hub, struc
+@@ -4468,6 +4468,14 @@ hub_port_init(struct usb_hub *hub, struc
  	else
  		speed = usb_speed_string(udev->speed);
  
@@ -315,8 +315,8 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  	/* Adjust Frame Length */
  	dwc3_frame_length_adjustment(dwc);
  
-@@ -938,11 +1052,117 @@ static void dwc3_core_exit_mode(struct d
- 	}
+@@ -941,11 +1055,117 @@ static void dwc3_core_exit_mode(struct d
+ 	dwc3_set_mode(dwc, DWC3_GCTL_PRTCAP_DEVICE);
  }
  
 +static void dwc3_get_properties(struct dwc3 *dwc)
@@ -433,7 +433,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  	struct resource		*res;
  	struct dwc3		*dwc;
  	u8			lpm_nyet_threshold;
-@@ -974,6 +1194,11 @@ static int dwc3_probe(struct platform_de
+@@ -977,6 +1197,11 @@ static int dwc3_probe(struct platform_de
  	dwc->xhci_resources[0].flags = res->flags;
  	dwc->xhci_resources[0].name = res->name;
  
@@ -445,7 +445,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  	res->start += DWC3_GLOBALS_REGS_START;
  
  	/*
-@@ -1016,6 +1241,12 @@ static int dwc3_probe(struct platform_de
+@@ -1019,6 +1244,12 @@ static int dwc3_probe(struct platform_de
  	dwc->usb3_lpm_capable = device_property_read_bool(dev,
  				"snps,usb3_lpm_capable");
  
@@ -458,7 +458,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  	dwc->disable_scramble_quirk = device_property_read_bool(dev,
  				"snps,disable_scramble_quirk");
  	dwc->u2exit_lfps_quirk = device_property_read_bool(dev,
-@@ -1060,6 +1291,8 @@ static int dwc3_probe(struct platform_de
+@@ -1063,6 +1294,8 @@ static int dwc3_probe(struct platform_de
  	dwc->hird_threshold = hird_threshold
  		| (dwc->is_utmi_l1_suspend << 4);
  
@@ -467,7 +467,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  	platform_set_drvdata(pdev, dwc);
  	dwc3_cache_hwparams(dwc);
  
-@@ -1083,6 +1316,11 @@ static int dwc3_probe(struct platform_de
+@@ -1086,6 +1319,11 @@ static int dwc3_probe(struct platform_de
  	if (ret < 0)
  		goto err1;
  
@@ -632,7 +632,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  	struct platform_device *dwc3_pdev = to_platform_device(dwc->dev);
  
  	irq = platform_get_irq_byname(dwc3_pdev, "peripheral");
-@@ -3042,6 +3043,12 @@ int dwc3_gadget_init(struct dwc3 *dwc)
+@@ -3041,6 +3042,12 @@ int dwc3_gadget_init(struct dwc3 *dwc)
  		goto err5;
  	}
  
@@ -1322,7 +1322,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  #endif				/* _EHCI_FSL_H */
 --- a/drivers/usb/host/ehci-hub.c
 +++ b/drivers/usb/host/ehci-hub.c
-@@ -278,6 +278,8 @@ static int ehci_bus_suspend (struct usb_
+@@ -277,6 +277,8 @@ static int ehci_bus_suspend (struct usb_
  		else if ((t1 & PORT_PE) && !(t1 & PORT_SUSPEND)) {
  			t2 |= PORT_SUSPEND;
  			set_bit(port, &ehci->bus_suspended);
@@ -1331,7 +1331,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  		}
  
  		/* enable remote wakeup on all ports, if told to do so */
-@@ -305,6 +307,8 @@ static int ehci_bus_suspend (struct usb_
+@@ -304,6 +306,8 @@ static int ehci_bus_suspend (struct usb_
  						USB_PORT_STAT_HIGH_SPEED)
  				fs_idle_delay = true;
  			ehci_writel(ehci, t2, reg);
@@ -1378,7 +1378,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  /*
 --- a/drivers/usb/host/fsl-mph-dr-of.c
 +++ b/drivers/usb/host/fsl-mph-dr-of.c
-@@ -226,6 +226,18 @@ static int fsl_usb2_mph_dr_of_probe(stru
+@@ -229,6 +229,18 @@ static int fsl_usb2_mph_dr_of_probe(stru
  		of_property_read_bool(np, "fsl,usb-erratum-a007792");
  	pdata->has_fsl_erratum_a005275 =
  		of_property_read_bool(np, "fsl,usb-erratum-a005275");
@@ -1418,7 +1418,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  
 --- a/drivers/usb/host/xhci-ring.c
 +++ b/drivers/usb/host/xhci-ring.c
-@@ -1859,14 +1859,17 @@ static int finish_td(struct xhci_hcd *xh
+@@ -1855,14 +1855,17 @@ static int finish_td(struct xhci_hcd *xh
  	union xhci_trb *event_trb, struct xhci_transfer_event *event,
  	struct xhci_virt_ep *ep, int *status, bool skip)
  {
@@ -1436,7 +1436,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  	u32 trb_comp_code;
  
  	slot_id = TRB_TO_SLOT_ID(le32_to_cpu(event->flags));
-@@ -1892,13 +1895,29 @@ static int finish_td(struct xhci_hcd *xh
+@@ -1888,13 +1891,29 @@ static int finish_td(struct xhci_hcd *xh
  	if (trb_comp_code == COMP_STALL ||
  		xhci_requires_manual_halt_cleanup(xhci, ep_ctx,
  						trb_comp_code)) {
@@ -1473,7 +1473,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  		while (ep_ring->dequeue != td->last_trb)
 --- a/drivers/usb/host/xhci.c
 +++ b/drivers/usb/host/xhci.c
-@@ -1619,14 +1619,38 @@ int xhci_urb_dequeue(struct usb_hcd *hcd
+@@ -1617,14 +1617,38 @@ int xhci_urb_dequeue(struct usb_hcd *hcd
  			ret = -ENOMEM;
  			goto done;
  		}
@@ -1521,7 +1521,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  	spin_unlock_irqrestore(&xhci->lock, flags);
 --- a/drivers/usb/host/xhci.h
 +++ b/drivers/usb/host/xhci.h
-@@ -1626,7 +1626,7 @@ struct xhci_hcd {
+@@ -1627,7 +1627,7 @@ struct xhci_hcd {
  #define XHCI_STATE_REMOVING	(1 << 2)
  	/* Statistics */
  	int			error_bitmask;
@@ -1530,7 +1530,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  #define	XHCI_LINK_TRB_QUIRK	(1 << 0)
  #define XHCI_RESET_EP_QUIRK	(1 << 1)
  #define XHCI_NEC_HOST		(1 << 2)
-@@ -1662,6 +1662,9 @@ struct xhci_hcd {
+@@ -1663,6 +1663,9 @@ struct xhci_hcd {
  #define XHCI_SSIC_PORT_UNUSED	(1 << 22)
  #define XHCI_NO_64BIT_SUPPORT	(1 << 23)
  #define XHCI_MISSING_CAS	(1 << 24)
@@ -1689,7 +1689,7 @@ Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
  #define BCSR5_INT_USB			(0x02)
 --- a/include/linux/usb.h
 +++ b/include/linux/usb.h
-@@ -360,6 +360,7 @@ struct usb_bus {
+@@ -395,6 +395,7 @@ struct usb_bus {
  					 * for control transfers?
  					 */
  	u8 otg_port;			/* 0, or number of OTG/HNP port */

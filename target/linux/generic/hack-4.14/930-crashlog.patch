@@ -41,7 +41,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
 +#endif
 --- a/init/Kconfig
 +++ b/init/Kconfig
-@@ -1009,6 +1009,10 @@ config RELAY
+@@ -1010,6 +1010,10 @@ config RELAY
  
  	  If unsure, say N.
  
@@ -54,7 +54,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	depends on BROKEN || !FRV
 --- a/kernel/Makefile
 +++ b/kernel/Makefile
-@@ -113,6 +113,7 @@ obj-$(CONFIG_CONTEXT_TRACKING) += contex
+@@ -110,6 +110,7 @@ obj-$(CONFIG_CONTEXT_TRACKING) += contex
  obj-$(CONFIG_TORTURE_TEST) += torture.o
  
  obj-$(CONFIG_HAS_IOMEM) += memremap.o
