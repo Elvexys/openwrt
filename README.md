@@ -55,6 +55,10 @@ make -j8
 
 Build result is available in `bin/targets/at91/lorix_one/`
 
+To generate wimg :
+
+`./create_wimg.sh`
+
 # Warranty
 This product is offered as it is, without any support.
 
