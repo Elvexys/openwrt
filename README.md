@@ -35,7 +35,10 @@ Management UI : https://192.168.1.1
 # Install OpenLORIX
 Binary release are available under the release section.
 
-You can flash them using Wifx documentation here : https://lorixone.io/wiki/NAND_Programming
+Each release is split in multiple files :
+
+- wimg files  :  images for first installation using [LORIX Programming tool](https://iot.wifx.net/docs/programming-tool/latest). Files are generated using the `create_wimg.sh ` script located in project root folder for both LORIXOne version (256 /512 NAND)
+- zip archive : All build artifacts, including sysupdate file to update existing OpenLORIX using GUI for both LORIXOne version (256 /512 NAND)
 
 # Build OpenLORIX
 You can build OpenLORIX with following command :

@@ -1,0 +1,40 @@
+version: 1.0
+
+device:
+  products:
+    - _VERSION
+  arch: SAMA5D4
+  nand:
+    ioset: 1
+    busWidth: 8
+    header: _HEADER_ADDR
+    eraseBlockSize: _ERASEBLOCKSIZE_ADDR
+
+partitions:
+  - label: "AT91bootstrap"
+    image: at91bootstrap.bin
+    startAddress: _AT91BOOTSTRAP_ADDR
+    checksum-md5: _HASH_AT91_BOOTSTRAP
+    isBoot: true
+
+  - label: "U-boot"
+    image: u-boot.bin
+    startAddress: _UBOOT_ADDR
+    checksum-md5: _HASH_UBOOT
+
+  - label: "DTB"
+    image: _PATH_DTB
+    startAddress: _DTB_ADDR
+    checksum-md5: _HASH_DTB
+
+  - label: "Kernel"
+    image: _PATH_KERNEL
+    startAddress: _KERNEL_ADDR
+    checksum-md5: _HASH_KERNEL
+
+  - label: "Rootfs"
+    image: _PATH_ROOTFS
+    startAddress: _ROOTFS_ADDR
+    size: end
+    checksum-md5: _HASH_ROOTFS
+
