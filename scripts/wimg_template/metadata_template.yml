@@ -16,6 +16,7 @@ partitions:
     startAddress: _AT91BOOTSTRAP_ADDR
     checksum-md5: _HASH_AT91_BOOTSTRAP
     isBoot: true
+    size: end
 
   - label: "U-boot"
     image: u-boot.bin
