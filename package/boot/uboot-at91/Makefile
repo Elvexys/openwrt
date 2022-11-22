@@ -92,6 +92,12 @@ define U-Boot/sama5d4_lorix_one_512_nandflash
   BUILD_DEVICES:=at91-sama5d4_lorix_one512
 endef
 
+define U-Boot/l1_nandflash
+  NAME:=SAMA5D4 Wifx L1 (NandFlash)
+  BUILD_SUBTARGET:=wifx_l1
+  BUILD_DEVICES:=at91-sama5d4_wifx_l1
+endef
+
 define U-Boot/sama5d27_som1_ek_mmc
   NAME:=SAMA5D27 SOM1 Ek (SDCard)
   BUILD_SUBTARGET:=sama5d2
@@ -128,6 +134,7 @@ UBOOT_TARGETS := \
 	sama5d4_xplained_nandflash\
 	sama5d4_lorix_one_nandflash \
 	sama5d4_lorix_one_512_nandflash \
+	l1_nandflash \
     sama5d27_som1_ek_mmc \
     sama5d27_som1_ek_spiflash \
 	sama5d2_ptc_ek_nandflash \

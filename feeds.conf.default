@@ -2,4 +2,4 @@ src-git packages https://github.com/Elvexys/packages.git;infoteam-18.06
 src-git luci https://git.openwrt.org/project/luci.git^91a73bebfbe387324a2bb27c034a435b113c1c74
 src-git routing https://git.openwrt.org/feed/routing.git^83f515d7ae76e5a7460c0eacadae806363df05a1
 src-git telephony https://git.openwrt.org/feed/telephony.git^e6a20f46dabe6c7a3c9c5bcf308aca33f2f79a5d
-src-git elvexys_oss https://github.com/Elvexys/elvexys-oss-feed.git^14adbf335de6609bb838e1021cde435db37f4374
+src-git elvexys_oss https://github.com/Elvexys/elvexys-oss-feed.git^c6297e4b3941b192d171dd052c2c3b8a3ed8b01b

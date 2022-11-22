@@ -13,6 +13,9 @@ platform_do_upgrade() {
 	at91-sama5d4_lorix_one512)
 		nand_do_upgrade $1
 		;;
+	at91-sama5d4_wifx_l1)
+		nand_do_upgrade $1
+		;;
 	*)
 		echo "flashing kernel"
 		tar xf $tar_file sysupgrade-$board/kernel -O | mtd write - kernel
@@ -38,7 +41,10 @@ platform_check_image() {
 		local kernel_length=`(tar xf $tar_file sysupgrade-$board/kernel -O | wc -c) 2> /dev/null`
 		local rootfs_length=`(tar xf $tar_file sysupgrade-$board/root -O | wc -c) 2> /dev/null`
 		;;
-
+	at91-sama5d4_wifx_l1)
+		local kernel_length=`(tar xf $tar_file sysupgrade-$board/kernel -O | wc -c) 2> /dev/null`
+		local rootfs_length=`(tar xf $tar_file sysupgrade-$board/root -O | wc -c) 2> /dev/null`
+		;;
 	*)
 		echo "Sysupgrade is not supported on your board yet."
 		return 1

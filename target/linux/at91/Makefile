@@ -11,9 +11,14 @@ BOARD:=at91
 MAINTAINER:=Claudio Mignanti <c.mignanti@gmail.com>
 BOARDNAME:=Microchip (Atmel AT91)
 FEATURES:=ext4 squashfs targz usb usbgadget ubifs
-SUBTARGETS:=sama5d2 sama5d3 sama5d4 lorix_one lorix_one512 legacy
+SUBTARGETS:=sama5d2 sama5d3 sama5d4 lorix_one lorix_one512 wifx_l1 legacy
 
+# use new kernel version with usbc support for wifx l1
+ifeq ($(SUBTARGET),wifx_l1)
+KERNEL_PATCHVER:=4.14
+else
 KERNEL_PATCHVER:=4.9
+endif
 
 include $(INCLUDE_DIR)/target.mk
 
